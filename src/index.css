@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark Pink & Crisp White Theme */
+    --background: 0 0% 100%;
+    --foreground: 336 35% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 336 35% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 336 35% 15%;
+
+    --primary: 336 84% 45%; /* Rich Dark Pink (#d61f69 / #be185d) */
+    --primary-foreground: 0 0% 100%; /* Pure White */
+
+    --secondary: 336 40% 96%;
+    --secondary-foreground: 336 84% 38%;
+
+    --muted: 336 25% 96%;
+    --muted-foreground: 336 18% 46%;
+
+    --accent: 336 45% 94%;
+    --accent-foreground: 336 84% 40%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 336 28% 90%;
+    --input: 336 28% 90%;
+    --ring: 336 84% 45%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 336 55% 11%; /* Deep Dark Wine / Velvet Pink */
+    --sidebar-foreground: 0 0% 100%; /* Pure White text */
+    --sidebar-primary: 336 85% 58%; /* Bright Pink Active Indicator */
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 336 45% 18%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 336 40% 18%;
+    --sidebar-ring: 336 85% 58%;
+  }
+
+  .dark {
+    /* Dark Velvet Pink & White Theme */
+    --background: 336 48% 6%;
+    --foreground: 0 0% 98%; /* White text */
+
+    --card: 336 42% 10%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 336 42% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 336 88% 56%; /* Vibrant Dark Pink */
+    --primary-foreground: 0 0% 100%; /* Pure White */
+
+    --secondary: 336 35% 16%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 336 30% 15%;
+    --muted-foreground: 336 20% 72%;
+
+    --accent: 336 38% 18%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 336 32% 18%;
+    --input: 336 32% 18%;
+    --ring: 336 88% 56%;
+
+    --sidebar-background: 336 52% 7%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 336 88% 56%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 336 40% 15%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 336 35% 15%;
+    --sidebar-ring: 336 88% 56%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1, "tnum" 1;
+  }
+}
+
+/* Print layout optimizations for Visual Report PDF export */
+@media print {
+  html, body {
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide navigation, sidebar, headers, and dropzones */
+  nav,
+  aside,
+  header,
+  footer,
+  .no-print,
+  .print-hide,
+  [data-print-hide],
+  button {
+    display: none !important;
+  }
+
+  /* Enforce exact print colors and background fills for visual report */
+  #visual-report-printable {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 16px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  #visual-report-printable * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Prevent awkward page cuts inside cards & charts */
+  .card, .p-4, .rounded-xl, svg, .recharts-wrapper {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}
